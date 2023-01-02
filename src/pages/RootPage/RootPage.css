@@ -10,7 +10,6 @@
 }
 
 .root-top-container {
-    background-color: pink;
     height: calc(100% - var(--player-height));
     display: flex;
 }
