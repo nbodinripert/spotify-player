@@ -1,6 +1,13 @@
 import React from 'react';
+import Playlist from '../models/playlist.model';
 
-const defaultState = {};
+interface PlaylistContextState {
+  playlists: Playlist[];
+}
 
-const PlaylistContext = React.createContext(defaultState);
+const defaultState = {
+  playlists: [],
+};
+
+const PlaylistContext = React.createContext<PlaylistContextState>(defaultState);
 export default PlaylistContext;
