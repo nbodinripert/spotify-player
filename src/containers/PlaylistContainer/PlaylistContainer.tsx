@@ -1,6 +1,7 @@
+import { FunctionComponent } from 'react';
 import './PlaylistContainer.css';
 
-const PlaylistContainer = () => {
+const PlaylistContainer: FunctionComponent = () => {
   //#region [render]
   return <div>PlaylistContainer</div>;
   //#endregion

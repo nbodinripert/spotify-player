@@ -1,0 +1,26 @@
+@media (max-width: 600px) {
+    .root-sidebar {
+        display: none;
+    }
+}
+
+.root-page {
+    height: 100%;
+    --content-width: 85%;
+}
+
+.root-top-container {
+    background-color: pink;
+    height: calc(100% - var(--player-height));
+    display: flex;
+}
+
+.root-content {
+    width: --content-width;
+}
+
+.root-sidebar {
+    width: calc(100% - var(--content-width));
+    min-width: 150px;
+    max-width: 250px;
+}
