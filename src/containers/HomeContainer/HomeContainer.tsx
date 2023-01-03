@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import Carousel from '../../components/Carousel';
 import Loader from '../../components/Loader/Loader';
 import PlaylistCard from '../../components/PlaylistCard/PlaylistCard';
 import PlaylistContext from '../../contexts/PlaylistContext';
@@ -10,25 +10,21 @@ const HomeContainer = () => {
   const { loading, playlists } = useContext(PlaylistContext);
   //#endregion
 
+  const items = playlists.map((playlist) => (
+    <PlaylistCard
+      key={'home_playlist_' + playlist.id}
+      imgUrl={playlist.imgUrl}
+      name={playlist.name}
+      users={playlist.users}
+      linkTo={playlist.url}
+    />
+  ));
+
   //#region [render]
   return (
     <div className="home-container">
       <p>Vos playlists</p>
-      {loading ? (
-        <Loader />
-      ) : (
-        playlists.map((playlist) => {
-          return (
-            <Link key={'home_playlist_' + playlist.id} to={playlist.url}>
-              <PlaylistCard
-                imgUrl={playlist.imgUrl}
-                name={playlist.name}
-                users={playlist.users}
-              />
-            </Link>
-          );
-        })
-      )}
+      {loading ? <Loader /> : <Carousel items={items} />}
     </div>
   );
   //#endregion

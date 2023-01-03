@@ -4,6 +4,7 @@
     background-color: var(--playlist-card-bg-color);
     border-radius: 5px;
     padding: 17px;
+    display: block;
 }
 
 .playlist-card:hover {
