@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import Playlist from '../models/playlist.model';
 
 interface FetchPlaylistData {
   __typename?: 'Playlist';
@@ -29,20 +28,3 @@ export const GET_PLAYLISTS = gql`
     }
   }
 `;
-
-export const transformToPlaylists = (
-  response: FetchPlaylistsData,
-): Playlist[] => {
-  const { id, name, images } = response.playlist;
-  let imagesUrls;
-  if (images && images.length > 0) {
-    imagesUrls = images.map((img) => img.url);
-  }
-  return [
-    {
-      id,
-      name,
-      imagesUrls: imagesUrls,
-    },
-  ];
-};

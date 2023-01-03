@@ -1,15 +1,12 @@
 import { useQuery } from '@apollo/client';
 import { FunctionComponent, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import {
-  FetchPlaylistsData,
-  GET_PLAYLISTS,
-  transformToPlaylists,
-} from '../../api/playlist.api';
+import { FetchPlaylistsData, GET_PLAYLISTS } from '../../api/playlist.api';
 import Player from '../../components/Player/Player';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import PlaylistContext from '../../contexts/PlaylistContext';
 import Playlist from '../../models/playlist.model';
+import { transformToPlaylists } from '../../utils/playlist.utils';
 import './RootPage.css';
 
 const RootPage: FunctionComponent = () => {
@@ -28,13 +25,11 @@ const RootPage: FunctionComponent = () => {
 
   //#region [render]
   return (
-    <PlaylistContext.Provider value={{ playlists }}>
+    <PlaylistContext.Provider value={{ loading, playlists }}>
       <div className="root-page">
         <div className="root-top-container">
           <Sidebar className="root-sidebar" />
-          <div className="root-content">
-            <Outlet />
-          </div>
+          <Outlet />
         </div>
         <Player />
       </div>

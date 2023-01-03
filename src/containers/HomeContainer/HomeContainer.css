@@ -1,0 +1,16 @@
+.home-container {
+    background-color: var(--content-bg-color);
+    padding: 15px;
+}
+
+.home-container>p {
+    font-size: 23px;
+    font-weight: bold;
+    color: var(--main-text-color);
+}
+
+.audio-loader {
+    height: 30px;
+    width: 30px;
+    color: var(--primary-color);
+}

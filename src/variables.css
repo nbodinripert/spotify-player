@@ -1,4 +1,26 @@
 html,
 body {
+    --primary-color: #D2C6E0;
+    --main-text-color: white;
+    --details-text-color: lightgray;
+    --content-bg-color: #121212;
+    --playlist-card-bg-color: #181818;
+    --playlist-card-hover-bg-color: #282828;
+    --player-bg-color: #181818;
+    --sidebar-bg-color: black;
     --player-height: 80px;
+}
+
+@media (prefers-color-scheme: light) {
+
+    html,
+    body {
+        --main-text-color: white;
+        --details-text-color: lightgray;
+        --content-bg-color: #121212;
+        --playlist-card-bg-color: #181818;
+        --playlist-card-hover-bg-color: #282828;
+        --player-bg-color: #181818;
+        --sidebar-bg-color: black;
+    }
 }
