@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import Carousel from '../../components/Carousel';
 import Loader from '../../components/Loader/Loader';
-import PlaylistCard from '../../components/PlaylistCard/PlaylistCard';
+import Card from '../../components/Card/Card';
 import PlaylistContext from '../../contexts/PlaylistContext';
 import './HomeContainer.css';
 
@@ -10,21 +10,21 @@ const HomeContainer = () => {
   const { loading, playlists } = useContext(PlaylistContext);
   //#endregion
 
-  const items = playlists.map((playlist) => (
-    <PlaylistCard
+  //#region [render]
+  const playlistsItems = playlists.map((playlist) => (
+    <Card
       key={'home_playlist_' + playlist.id}
       imgUrl={playlist.imgUrl}
-      name={playlist.name}
-      users={playlist.users}
+      title={playlist.name}
+      details={`Par ${playlist.users.join(', ')}`}
       linkTo={playlist.url}
     />
   ));
 
-  //#region [render]
   return (
     <div className="home-container">
       <p>Vos playlists</p>
-      {loading ? <Loader /> : <Carousel items={items} />}
+      {loading ? <Loader /> : <Carousel items={playlistsItems} />}
     </div>
   );
   //#endregion

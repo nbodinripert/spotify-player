@@ -1,4 +1,4 @@
-.playlist-card {
+.card {
     width: 190px;
     height: 280px;
     background-color: var(--playlist-card-bg-color);
@@ -7,23 +7,23 @@
     display: block;
 }
 
-.playlist-card:hover {
+.card:hover {
     background-color: var(--playlist-card-hover-bg-color);
 }
 
-.playlist-card img {
+.card img {
     width: 100%;
     border-radius: 5px;
     box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.5);
 }
 
-.playlist-card-name {
+.card-title {
     font-size: 15px;
     font-weight: bold;
     color: var(--main-text-color);
 }
 
-.playlist-card-user {
+.card-details {
     font-size: 13px;
     color: var(--details-text-color);
     display: -webkit-box;
