@@ -4,21 +4,6 @@
     padding: 15px;
 }
 
-.home-container>p {
-    font-size: 23px;
-    font-weight: bold;
-    color: var(--main-text-color);
-}
-
-.home-grid {
-    display: flex;
-    gap: 20px;
-}
-
-.alice-carousel__stage-item {
-    width: 230px;
-}
-
 @media (max-width: 600px) {
     .home-container {
         width: 100%;

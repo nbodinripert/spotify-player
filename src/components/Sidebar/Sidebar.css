@@ -1,3 +1,40 @@
 .sidebar {
-    height: 100%;
+    --padding-top-bottom: 10px;
+    height: calc(100% - 2*(var(--padding-top-bottom)));
+    padding: var(--padding-top-bottom) 15px;
+    background-color: var(--sidebar-bg-color);
+}
+
+.sidebar-logo {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-logo>img {
+    width: 30px;
+    margin-right: 5px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--unactive-link-color);
+}
+
+.sidebar-link:not(.active):hover {
+    color: var(--main-text-color);
+}
+
+.sidebar-link-icon {
+    font-size: 25px;
+}
+
+.sidebar-link.active {
+    font-weight: bold;
+    color: var(--main-text-color);
 }

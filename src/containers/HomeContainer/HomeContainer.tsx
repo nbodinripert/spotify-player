@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import Carousel from '../../components/Carousel';
+import Carousel from '../../components/Carousel/Carousel';
 import Loader from '../../components/Loader/Loader';
 import Card from '../../components/Card/Card';
 import PlaylistContext from '../../contexts/PlaylistContext';
@@ -23,8 +23,11 @@ const HomeContainer = () => {
 
   return (
     <div className="home-container">
-      <p>Vos playlists</p>
-      {loading ? <Loader /> : <Carousel items={playlistsItems} />}
+      {loading ? (
+        <Loader />
+      ) : (
+        <Carousel title="Vos playlists" items={playlistsItems} />
+      )}
     </div>
   );
   //#endregion
