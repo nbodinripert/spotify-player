@@ -1,8 +1,8 @@
-import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faHome } from '@fortawesome/free-solid-svg-icons';
 import { FunctionComponent } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import SidebarNavLink from '../SidebarNavlink/SidebarNavLink';
 import './Sidebar.css';
 
 interface SidebarProps {
@@ -23,15 +23,20 @@ const Sidebar: FunctionComponent<SidebarProps> = ({ className }) => {
         <nav>
           <ul>
             <li>
-              <NavLink
+              <SidebarNavLink
                 to="/"
-                className={({ isActive }) =>
-                  `sidebar-link ${isActive ? 'active' : ''}`
-                }
-              >
-                <FontAwesomeIcon icon={faHome} className="sidebar-link-icon" />
-                <span>Accueil</span>
-              </NavLink>
+                icon={faHome}
+                title="Accueil"
+                classNameTitle="navlink-home-title"
+                classNameIcon="navlink-home-icon"
+              />
+              <SidebarNavLink
+                to="collection/likes"
+                icon={faHeart}
+                title="Titres likés"
+                classNameTitle="navlink-small-title"
+                classNameIcon="navlink-small-icon"
+              />
             </li>
           </ul>
         </nav>
