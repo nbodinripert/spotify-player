@@ -9,6 +9,7 @@ body {
     --player-bg-color: #181818;
     --sidebar-bg-color: black;
     --unactive-link-color: gray;
+    --hr-bg-color: lightgray;
     --player-height: 80px;
     --sidebar-width: 200px;
 }
@@ -25,5 +26,6 @@ body {
         --player-bg-color: #181818;
         --sidebar-bg-color: black;
         --unactive-link-color: gray;
+        --hr-bg-color: lightgray;
     }
 }

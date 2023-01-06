@@ -24,7 +24,9 @@ const HomeContainer = () => {
   return (
     <div className="home-container">
       {loading ? (
-        <Loader />
+        <div className="home-container-loader-wrapper">
+          <Loader />
+        </div>
       ) : (
         <Carousel title="Vos playlists" items={playlistsItems} />
       )}

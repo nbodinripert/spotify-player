@@ -27,16 +27,37 @@
     font-size: 25px;
 }
 
-.navlink-small-title {
+.navlink-small-title,
+.navlink-playlist-title {
     font-size: 14px;
 }
 
 .navlink-small-icon {
-    font-size: 20px;
+    font-size: 18px;
 }
 
-.sidebar li {
+.navlink-playlist-icon {
+    font-size: 10px;
+}
+
+.sidebar-nav-top {
+    margin-top: 40px;
+}
+
+.sidebar-nav-top>ul {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 25px;
+}
+
+.sidebar hr {
+    margin: 20px 10px;
+    border-top: 1px solid var(--primary-color);
+    border-bottom: none;
+}
+
+.sidebar-nav-playlists>ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

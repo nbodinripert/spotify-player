@@ -5,11 +5,11 @@ import { NavLink } from 'react-router-dom';
 import './SidebarNavLink.css';
 
 interface SidebarNavLinkProps {
-  icon: IconDefinition;
-  title: string;
-  to: string;
   classNameIcon?: string;
   classNameTitle?: string;
+  icon?: IconDefinition;
+  title: string;
+  to: string;
 }
 
 const SidebarNavLink: FunctionComponent<SidebarNavLinkProps> = ({
@@ -19,15 +19,17 @@ const SidebarNavLink: FunctionComponent<SidebarNavLinkProps> = ({
   classNameIcon,
   classNameTitle,
 }) => {
+  //#region [render]
   return (
     <NavLink
       to={to}
       className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
     >
-      <FontAwesomeIcon icon={icon} className={classNameIcon} />
+      {icon && <FontAwesomeIcon icon={icon} className={classNameIcon} />}
       <span className={classNameTitle}>{title}</span>
     </NavLink>
   );
+  //#endregion
 };
 
 export default SidebarNavLink;
