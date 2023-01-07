@@ -25,7 +25,7 @@ const RootPage: FunctionComponent = () => {
 
   //#region [render]
   return (
-    <PlaylistContext.Provider value={{ loading, playlists }}>
+    <PlaylistContext.Provider value={{ error, loading, playlists }}>
       <div className="root-page">
         <div className="root-top-container">
           <Sidebar className="root-sidebar" />

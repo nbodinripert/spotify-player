@@ -1,13 +1,13 @@
 import { useContext } from 'react';
-import Carousel from '../../components/Carousel/Carousel';
-import Loader from '../../components/Loader/Loader';
 import Card from '../../components/Card/Card';
+import Carousel from '../../components/Carousel/Carousel';
 import PlaylistContext from '../../contexts/PlaylistContext';
+import OutletContainer from '../OutletContainer/OutletContainer';
 import './HomeContainer.css';
 
 const HomeContainer = () => {
   //#region [contexts]
-  const { loading, playlists } = useContext(PlaylistContext);
+  const { error, loading, playlists } = useContext(PlaylistContext);
   //#endregion
 
   //#region [render]
@@ -22,15 +22,9 @@ const HomeContainer = () => {
   ));
 
   return (
-    <div className="home-container">
-      {loading ? (
-        <div className="home-container-loader-wrapper">
-          <Loader />
-        </div>
-      ) : (
-        <Carousel title="Vos playlists" items={playlistsItems} />
-      )}
-    </div>
+    <OutletContainer loading={loading} error={error}>
+      <Carousel title="Vos playlists" items={playlistsItems} />
+    </OutletContainer>
   );
   //#endregion
 };

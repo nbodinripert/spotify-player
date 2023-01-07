@@ -1,0 +1,19 @@
+.outlet-container {
+    width: calc(100% - var(--sidebar-width));
+    height: 100%;
+    padding: 15px;
+}
+
+.outlet-container-center {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .outlet-container {
+        width: 100%;
+    }
+}

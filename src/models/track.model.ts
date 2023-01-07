@@ -1,12 +1,13 @@
 import Artist from './artist.model';
 
 interface Track {
-  id: string;
-  name: string;
   album?: string;
-  artists: Artist[];
-  url: string;
+  artists?: Artist[];
   duration: number;
+  id: string;
+  imgUrl?: string;
+  name: string;
+  url?: string;
 }
 
 export default Track;
