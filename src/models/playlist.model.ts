@@ -2,10 +2,11 @@ import PlaylistTrack from './playlistTrack.model';
 
 interface Playlist {
   description?: string;
+  duration?: string;
   id: string;
   imgUrl?: string;
   name: string;
-  tracks?: PlaylistTrack[];
+  tracks: PlaylistTrack[];
   users: string[];
   url: string;
 }

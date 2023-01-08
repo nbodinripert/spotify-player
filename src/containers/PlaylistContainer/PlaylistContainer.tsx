@@ -1,8 +1,14 @@
 import { useQuery } from '@apollo/client';
-import { FunctionComponent, useEffect, useState } from 'react';
-import { FetchPlaylistsData, GET_PLAYLIST } from '../../api/playlist.api';
+import { faCircleDot } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FunctionComponent, useState } from 'react';
+import {
+  FetchPlaylistsData,
+  GET_PLAYLIST,
+  transformToPlaylist,
+} from '../../api/playlist.api';
+import play from '../../assets/play.png';
 import Playlist from '../../models/playlist.model';
-import { transformToPlaylist } from '../../utils/playlist.utils';
 import OutletContainer from '../OutletContainer/OutletContainer';
 import './PlaylistContainer.css';
 
@@ -19,16 +25,65 @@ const PlaylistContainer: FunctionComponent = () => {
     },
   });
 
-  //#region effects
-  useEffect(() => {}, []);
-  //#endregion
-
   //#region [render]
   return (
     <OutletContainer loading={loading} error={error}>
       {playlist ? (
-        <div className='playlist-container'>
-        <div className="playlist-sticky-header">{playlist.name}</div>
+        <div className="playlist-container">
+          <div className="playlist-sticky-header">
+            <img src={play} alt="play" />
+            <span>{playlist.name}</span>
+          </div>
+          <div className="playlist-info">
+            <img src={playlist.imgUrl} alt="play" />
+            <div className="playlist-info-texts">
+              <p className="playlist-info-type">Playlist</p>
+              <p className="playlist-info-name">{playlist.name}</p>
+              <p className="playlist-info-details">
+                <span className="bold">{playlist.users.join(', ')}</span>
+                <FontAwesomeIcon
+                  icon={faCircleDot}
+                  className="playlist-info-dot"
+                />
+                <span className="bold">{playlist.tracks.length} titre(s)</span>
+                <FontAwesomeIcon
+                  icon={faCircleDot}
+                  className="playlist-info-dot"
+                />
+                <span>{playlist.duration}</span>
+              </p>
+            </div>
+          </div>
+          <div className="playlist-table-wrapper">
+            <table className="playlist-table">
+              <thead>
+                <tr>
+                  <th className="playlist-table-col-index">#</th>
+                  <th>Titre</th>
+                  <th>Album</th>
+                  <th className="playlist-table-col-addedAt">Ajouté le</th>
+                  <th className="playlist-table-col-like">Like</th>
+                  <th className="playlist-table-col-duration">Durée</th>
+                </tr>
+              </thead>
+              <tbody>
+                {playlist.tracks.map((playlistTrack, index) => (
+                  <tr key={'playlist_tr_' + index}>
+                    <td className="playlist-table-col-index">{index + 1}</td>
+                    <td>{playlistTrack.track.name}</td>
+                    <td>{playlistTrack.track.album ?? ''}</td>
+                    <td className="playlist-table-col-addedAt">
+                      {playlistTrack.addedAt}
+                    </td>
+                    <td className="playlist-table-col-like"></td>
+                    <td className="playlist-table-col-duration">
+                      {playlistTrack.track.duration}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       ) : null}
     </OutletContainer>

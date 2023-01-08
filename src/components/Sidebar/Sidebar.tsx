@@ -2,7 +2,7 @@ import { faHeart, faHome } from '@fortawesome/free-solid-svg-icons';
 import { FunctionComponent, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-import PlaylistContext from '../../contexts/PlaylistContext';
+import PlaylistsPreviewsContext from '../../contexts/PlaylistsPreviewsContext';
 import SidebarNavLink from '../SidebarNavlink/SidebarNavLink';
 import './Sidebar.css';
 
@@ -12,7 +12,7 @@ interface SidebarProps {
 
 const Sidebar: FunctionComponent<SidebarProps> = ({ className }) => {
   //#region [contexts]
-  const { loading, playlists } = useContext(PlaylistContext);
+  const { loading, playlistsPreviews } = useContext(PlaylistsPreviewsContext);
   //#endregion
 
   //#region [render]
@@ -51,9 +51,9 @@ const Sidebar: FunctionComponent<SidebarProps> = ({ className }) => {
         {loading ? (
           <span>...</span>
         ) : (
-          <nav className=''>
+          <nav className="">
             <ul>
-              {playlists.map((playlist) => (
+              {playlistsPreviews.map((playlist) => (
                 <li key={'navlink_playlist_' + playlist.id}>
                   <SidebarNavLink
                     to={playlist.url}

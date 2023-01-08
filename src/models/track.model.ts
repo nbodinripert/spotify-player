@@ -2,8 +2,8 @@ import Artist from './artist.model';
 
 interface Track {
   album?: string;
-  artists?: Artist[];
-  duration: number;
+  artists: Artist[];
+  duration: string;
   id: string;
   imgUrl?: string;
   name: string;

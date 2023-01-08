@@ -10,6 +10,7 @@ body {
     --sidebar-bg-color: black;
     --unactive-link-color: gray;
     --hr-bg-color: lightgray;
+    --info-gradient: linear-gradient(90deg, rgba(51, 0, 75, 1) 0%, rgba(94, 9, 121, 1) 35%, rgb(193, 168, 220) 100%);
     --player-height: 80px;
     --sidebar-width: 200px;
 }

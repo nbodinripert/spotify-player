@@ -1,4 +1,9 @@
 import { gql } from '@apollo/client';
+import { DEFAULT_IMG_URL } from '../constants/playlist.constants';
+import Playlist from '../models/playlist.model';
+import PlaylistPreview from '../models/playlistPreview.model';
+import PlaylistTrack from '../models/playlistTrack.model';
+import { convertMsToHrsMins, convertMsToMinsSecs } from '../utils/time.utils';
 
 //#region [interfaces]
 interface FetchPlaylistData {
@@ -49,7 +54,7 @@ export interface FetchPlaylistsData {
 //#endregion
 
 //#region [queries]
-export const GET_PLAYLISTS = gql`
+export const GET_PLAYLISTS_PREVIEWS = gql`
   query GetPlaylists {
     playlist {
       id
@@ -91,4 +96,71 @@ export const GET_PLAYLIST = gql`
     }
   }
 `;
+//#endregion
+
+//#region [transform methods]
+export const transformToPlaylistsPreviews = (
+  response: FetchPlaylistsData,
+): PlaylistPreview[] => {
+  const { id, name, images } = response.playlist;
+  const imgUrl = images && images.length > 0 ? images[0].url : DEFAULT_IMG_URL;
+  return [
+    {
+      id,
+      imgUrl,
+      name,
+      users: ['Nicolas Bodin'],
+      url: `playlist/${id}`,
+    },
+  ];
+};
+
+export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
+  const { id, name, images, tracks } = response.playlist;
+  const playlistTracks: PlaylistTrack[] = [];
+
+  const playlistImgUrl =
+    images && images.length >= 0 ? images[0].url : undefined;
+  let playlistDurationMs = 0;
+
+  if (tracks && tracks.length > 0) {
+    tracks.forEach((playlistTrack) => {
+      const { added_at, track } = playlistTrack;
+      const { id, name, album, artists, preview_url, duration_ms } = track;
+      const imgUrl =
+        album && album.images && album.images.length >= 0
+          ? album.images[0].url
+          : undefined;
+      playlistTracks.push({
+        addedAt: added_at,
+        track: {
+          album: album?.name,
+          artists: !artists
+            ? []
+            : artists.map((artist) => ({
+                id: artist.id,
+                name: artist.name,
+              })),
+          duration: convertMsToMinsSecs(duration_ms),
+          id,
+          imgUrl,
+          name,
+          url: preview_url,
+        },
+      });
+      playlistDurationMs += duration_ms;
+    });
+  }
+
+  return {
+    duration: convertMsToHrsMins(playlistDurationMs),
+    id,
+    imgUrl: playlistImgUrl,
+    name,
+    users: ['Nicolas Bodin'],
+    description: 'Une playlist spécialement conçue pour Shotgun',
+    url: `playlist/${id}`,
+    tracks: playlistTracks,
+  };
+};
 //#endregion

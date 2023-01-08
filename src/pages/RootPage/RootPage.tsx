@@ -1,31 +1,41 @@
 import { useQuery } from '@apollo/client';
 import { FunctionComponent, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { FetchPlaylistsData, GET_PLAYLISTS } from '../../api/playlist.api';
+import {
+  FetchPlaylistsData,
+  GET_PLAYLISTS_PREVIEWS,
+  transformToPlaylistsPreviews,
+} from '../../api/playlist.api';
 import Player from '../../components/Player/Player';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import PlaylistContext from '../../contexts/PlaylistContext';
-import Playlist from '../../models/playlist.model';
-import { transformToPlaylists } from '../../utils/playlist.utils';
+import PlaylistsPreviewsContext from '../../contexts/PlaylistsPreviewsContext';
+import PlaylistPreview from '../../models/playlistPreview.model';
 import './RootPage.css';
 
 const RootPage: FunctionComponent = () => {
   //#region [states]
-  const [playlists, setPlaylists] = useState<Playlist[]>([]);
+  const [playlistsPreviews, setPlaylistsPreviews] = useState<PlaylistPreview[]>(
+    [],
+  );
   //#endregion
 
   //#region [queries]
-  const { loading, error } = useQuery<FetchPlaylistsData>(GET_PLAYLISTS, {
-    onCompleted: (response) => {
-      const transformed = transformToPlaylists(response);
-      setPlaylists(transformed);
+  const { loading, error } = useQuery<FetchPlaylistsData>(
+    GET_PLAYLISTS_PREVIEWS,
+    {
+      onCompleted: (response) => {
+        const transformed = transformToPlaylistsPreviews(response);
+        setPlaylistsPreviews(transformed);
+      },
     },
-  });
+  );
   //#endregion
 
   //#region [render]
   return (
-    <PlaylistContext.Provider value={{ error, loading, playlists }}>
+    <PlaylistsPreviewsContext.Provider
+      value={{ error, loading, playlistsPreviews }}
+    >
       <div className="root-page">
         <div className="root-top-container">
           <Sidebar className="root-sidebar" />
@@ -33,7 +43,7 @@ const RootPage: FunctionComponent = () => {
         </div>
         <Player />
       </div>
-    </PlaylistContext.Provider>
+    </PlaylistsPreviewsContext.Provider>
   );
   //#endregion
 };

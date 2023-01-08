@@ -1,7 +1,6 @@
 .outlet-container {
     width: calc(100% - var(--sidebar-width));
     height: 100%;
-    padding: 15px;
 }
 
 .outlet-container-center {

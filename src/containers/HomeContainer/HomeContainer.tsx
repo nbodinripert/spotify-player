@@ -1,17 +1,19 @@
 import { useContext } from 'react';
 import Card from '../../components/Card/Card';
 import Carousel from '../../components/Carousel/Carousel';
-import PlaylistContext from '../../contexts/PlaylistContext';
+import PlaylistsPreviewsContext from '../../contexts/PlaylistsPreviewsContext';
 import OutletContainer from '../OutletContainer/OutletContainer';
 import './HomeContainer.css';
 
 const HomeContainer = () => {
   //#region [contexts]
-  const { error, loading, playlists } = useContext(PlaylistContext);
+  const { error, loading, playlistsPreviews } = useContext(
+    PlaylistsPreviewsContext,
+  );
   //#endregion
 
   //#region [render]
-  const playlistsItems = playlists.map((playlist) => (
+  const playlistsItems = playlistsPreviews.map((playlist) => (
     <Card
       key={'home_playlist_' + playlist.id}
       imgUrl={playlist.imgUrl}
@@ -23,7 +25,9 @@ const HomeContainer = () => {
 
   return (
     <OutletContainer loading={loading} error={error}>
-      <Carousel title="Vos playlists" items={playlistsItems} />
+      <div className="home-container">
+        <Carousel title="Vos playlists" items={playlistsItems} />
+      </div>
     </OutletContainer>
   );
   //#endregion
