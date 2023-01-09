@@ -132,7 +132,7 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
           ? album.images[0].url
           : undefined;
       playlistTracks.push({
-        addedAt: added_at,
+        addedAt: new Date(added_at).toLocaleString('fr', { dateStyle: 'medium'}),
         track: {
           album: album?.name,
           artists: !artists

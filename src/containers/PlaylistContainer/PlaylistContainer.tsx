@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { faCircleDot } from '@fortawesome/free-solid-svg-icons';
+import { faCircleDot, faClock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FunctionComponent, useState } from 'react';
 import {
@@ -63,14 +63,19 @@ const PlaylistContainer: FunctionComponent = () => {
                   <th>Album</th>
                   <th className="playlist-table-col-addedAt">Ajouté le</th>
                   <th className="playlist-table-col-like">Like</th>
-                  <th className="playlist-table-col-duration">Durée</th>
+                  <th className="playlist-table-col-duration">
+                    <FontAwesomeIcon icon={faClock} />
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {playlist.tracks.map((playlistTrack, index) => (
                   <tr key={'playlist_tr_' + index}>
                     <td className="playlist-table-col-index">{index + 1}</td>
-                    <td>{playlistTrack.track.name}</td>
+                    <td className="playlist-table-td-title">
+                      <img src={playlistTrack.track.imgUrl} alt="title-img" />
+                      <span>{playlistTrack.track.name}</span>
+                    </td>
                     <td>{playlistTrack.track.album ?? ''}</td>
                     <td className="playlist-table-col-addedAt">
                       {playlistTrack.addedAt}
