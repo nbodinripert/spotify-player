@@ -33,3 +33,7 @@ ul {
 .bold {
     font-weight: bold;
 }
+
+.cursor {
+    cursor: pointer;
+}

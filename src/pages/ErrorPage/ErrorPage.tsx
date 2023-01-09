@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FC } from 'react';
 import { useRouteError } from 'react-router-dom';
 import './ErrorPage.css';
 
@@ -7,7 +7,7 @@ type RouteError = {
   message?: string;
 };
 
-const ErrorPage: FunctionComponent = () => {
+const ErrorPage: FC = () => {
   const error = useRouteError() as RouteError;
   console.error(error);
 

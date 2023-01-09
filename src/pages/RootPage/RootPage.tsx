@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { FunctionComponent, useState } from 'react';
+import { FC, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import {
   FetchPlaylistsData,
@@ -12,7 +12,7 @@ import PlaylistsPreviewsContext from '../../contexts/PlaylistsPreviewsContext';
 import PlaylistPreview from '../../models/playlistPreview.model';
 import './RootPage.css';
 
-const RootPage: FunctionComponent = () => {
+const RootPage: FC = () => {
   //#region [states]
   const [playlistsPreviews, setPlaylistsPreviews] = useState<PlaylistPreview[]>(
     [],

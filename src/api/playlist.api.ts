@@ -3,6 +3,7 @@ import { DEFAULT_IMG_URL } from '../constants/playlist.constants';
 import Playlist from '../models/playlist.model';
 import PlaylistPreview from '../models/playlistPreview.model';
 import PlaylistTrack from '../models/playlistTrack.model';
+import { getFavoriteTracks } from '../utils/storage.utils';
 import { convertMsToHrsMins, convertMsToMinsSecs } from '../utils/time.utils';
 
 //#region [interfaces]
@@ -117,7 +118,9 @@ export const transformToPlaylistsPreviews = (
 
 export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
   const { id, name, images, tracks } = response.playlist;
+
   const playlistTracks: PlaylistTrack[] = [];
+  const favoriteTracks = getFavoriteTracks();
 
   const playlistImgUrl =
     images && images.length >= 0 ? images[0].url : undefined;
@@ -126,13 +129,15 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
   if (tracks && tracks.length > 0) {
     tracks.forEach((playlistTrack) => {
       const { added_at, track } = playlistTrack;
-      const { id, name, album, artists, preview_url, duration_ms } = track;
+      const { album, artists, preview_url, duration_ms } = track;
       const imgUrl =
         album && album.images && album.images.length >= 0
           ? album.images[0].url
           : undefined;
       playlistTracks.push({
-        addedAt: new Date(added_at).toLocaleString('fr', { dateStyle: 'medium'}),
+        addedAt: new Date(added_at).toLocaleString('fr', {
+          dateStyle: 'medium',
+        }),
         track: {
           album: album?.name,
           artists: !artists
@@ -142,9 +147,10 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
                 name: artist.name,
               })),
           duration: convertMsToMinsSecs(duration_ms),
-          id,
+          id: track.id,
           imgUrl,
-          name,
+          like: favoriteTracks[track.id],
+          name: track.name,
           url: preview_url,
         },
       });

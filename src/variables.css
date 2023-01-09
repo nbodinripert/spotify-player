@@ -1,6 +1,6 @@
 html,
 body {
-    --primary-color: #D2C6E0;
+    --primary-color: #cdbae2;
     --main-text-color: white;
     --details-text-color: lightgray;
     --content-bg-color: #121212;
@@ -12,6 +12,7 @@ body {
     --hr-bg-color: lightgray;
     --info-gradient: linear-gradient(90deg, rgba(51, 0, 75, 1) 0%, rgba(94, 9, 121, 1) 35%, rgb(193, 168, 220) 100%);
     --player-height: 80px;
+    --sticky-header-height: 60px;
     --sidebar-width: 200px;
 }
 

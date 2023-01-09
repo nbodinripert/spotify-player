@@ -1,20 +1,28 @@
 import { useQuery } from '@apollo/client';
-import { faCircleDot, faClock } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleDot,
+  faCircleLeft,
+  faPlayCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FunctionComponent, useState } from 'react';
+import { FC, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   FetchPlaylistsData,
   GET_PLAYLIST,
   transformToPlaylist,
 } from '../../api/playlist.api';
-import play from '../../assets/play.png';
+import PlaylistTable from '../../components/PlaylistTable/PlaylistTable';
 import Playlist from '../../models/playlist.model';
 import OutletContainer from '../OutletContainer/OutletContainer';
 import './PlaylistContainer.css';
 
-const PlaylistContainer: FunctionComponent = () => {
+const PLAY_VISIBLE_SCROLL_TOP = 189;
+
+const PlaylistContainer: FC = () => {
   //#region [states]
   const [playlist, setPlaylist] = useState<Playlist>();
+  const [headerPlayVisible, setHeaderPlayVisible] = useState(false);
   //#endregion
 
   //#region [queries]
@@ -24,15 +32,42 @@ const PlaylistContainer: FunctionComponent = () => {
       setPlaylist(transformed);
     },
   });
+  //#endregion
+
+  //#region [handle methods]
+  const handleScrollEvent = (evt: React.UIEvent<HTMLDivElement, UIEvent>) => {
+    if (
+      !headerPlayVisible &&
+      evt.currentTarget.scrollTop > PLAY_VISIBLE_SCROLL_TOP
+    )
+      setHeaderPlayVisible(true);
+
+    if (
+      headerPlayVisible &&
+      evt.currentTarget.scrollTop <= PLAY_VISIBLE_SCROLL_TOP
+    )
+      setHeaderPlayVisible(false);
+  };
+  //#endregion
 
   //#region [render]
   return (
     <OutletContainer loading={loading} error={error}>
       {playlist ? (
-        <div className="playlist-container">
+        <div className="playlist-container" onScroll={handleScrollEvent}>
           <div className="playlist-sticky-header">
-            <img src={play} alt="play" />
-            <span>{playlist.name}</span>
+            {headerPlayVisible ? (
+              <div className="playlist-sticky-header-play">
+                <FontAwesomeIcon icon={faPlayCircle} />
+                <span>{playlist.name}</span>
+              </div>
+            ) : (
+              <div className="playlist-sticky-header-back">
+                <Link to="/">
+                  <FontAwesomeIcon icon={faCircleLeft} />
+                </Link>
+              </div>
+            )}
           </div>
           <div className="playlist-info">
             <img src={playlist.imgUrl} alt="play" />
@@ -54,41 +89,7 @@ const PlaylistContainer: FunctionComponent = () => {
               </p>
             </div>
           </div>
-          <div className="playlist-table-wrapper">
-            <table className="playlist-table">
-              <thead>
-                <tr>
-                  <th className="playlist-table-col-index">#</th>
-                  <th>Titre</th>
-                  <th>Album</th>
-                  <th className="playlist-table-col-addedAt">Ajouté le</th>
-                  <th className="playlist-table-col-like">Like</th>
-                  <th className="playlist-table-col-duration">
-                    <FontAwesomeIcon icon={faClock} />
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {playlist.tracks.map((playlistTrack, index) => (
-                  <tr key={'playlist_tr_' + index}>
-                    <td className="playlist-table-col-index">{index + 1}</td>
-                    <td className="playlist-table-td-title">
-                      <img src={playlistTrack.track.imgUrl} alt="title-img" />
-                      <span>{playlistTrack.track.name}</span>
-                    </td>
-                    <td>{playlistTrack.track.album ?? ''}</td>
-                    <td className="playlist-table-col-addedAt">
-                      {playlistTrack.addedAt}
-                    </td>
-                    <td className="playlist-table-col-like"></td>
-                    <td className="playlist-table-col-duration">
-                      {playlistTrack.track.duration}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <PlaylistTable playlistTracks={playlist.tracks} />
         </div>
       ) : null}
     </OutletContainer>

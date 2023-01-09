@@ -1,5 +1,5 @@
 import { faHeart, faHome } from '@fortawesome/free-solid-svg-icons';
-import { FunctionComponent, useContext } from 'react';
+import { FC, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import PlaylistsPreviewsContext from '../../contexts/PlaylistsPreviewsContext';
@@ -10,7 +10,7 @@ interface SidebarProps {
   className?: string;
 }
 
-const Sidebar: FunctionComponent<SidebarProps> = ({ className }) => {
+const Sidebar: FC<SidebarProps> = ({ className }) => {
   //#region [contexts]
   const { loading, playlistsPreviews } = useContext(PlaylistsPreviewsContext);
   //#endregion

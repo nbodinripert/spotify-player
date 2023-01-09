@@ -1,6 +1,6 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FunctionComponent } from 'react';
+import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import './SidebarNavLink.css';
 
@@ -12,7 +12,7 @@ interface SidebarNavLinkProps {
   to: string;
 }
 
-const SidebarNavLink: FunctionComponent<SidebarNavLinkProps> = ({
+const SidebarNavLink: FC<SidebarNavLinkProps> = ({
   icon,
   title,
   to,

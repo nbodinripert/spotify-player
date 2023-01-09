@@ -1,5 +1,5 @@
 import { ApolloError } from '@apollo/client';
-import { FunctionComponent } from 'react';
+import { FC } from 'react';
 import Loader from '../../components/Loader/Loader';
 import './OutletContainer.css';
 
@@ -9,7 +9,7 @@ interface OutletContainerProps {
   loading: boolean;
 }
 
-const OutletContainer: FunctionComponent<OutletContainerProps> = ({
+const OutletContainer: FC<OutletContainerProps> = ({
   loading,
   error,
   children,

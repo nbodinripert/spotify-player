@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import './Card.css';
 
@@ -9,12 +9,7 @@ interface CardProps {
   details: string;
 }
 
-const Card: FunctionComponent<CardProps> = ({
-  imgUrl,
-  linkTo,
-  title,
-  details,
-}) => {
+const Card: FC<CardProps> = ({ imgUrl, linkTo, title, details }) => {
   //#region [render]
   return (
     <Link to={linkTo} className="card">

@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FC } from 'react';
 import { default as MultipleItemsCarousel } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { CAROUSEL_RESPONSIVE } from '../../constants/carousel.constant';
@@ -9,11 +9,11 @@ interface CarouselProps {
   items: unknown[];
 }
 
-const Carousel: FunctionComponent<CarouselProps> = ({ title, items }) => {
+const Carousel: FC<CarouselProps> = ({ title, items }) => {
   //#region [render]
   return (
     <div>
-      <p className='carousel-title'>{title}</p>
+      <p className="carousel-title">{title}</p>
       <MultipleItemsCarousel responsive={CAROUSEL_RESPONSIVE}>
         {items}
       </MultipleItemsCarousel>
