@@ -11,8 +11,8 @@ const useFavorites = () => {
   const {
     currentPlaylist,
     currentTrackIndex,
-    setCurrentTrackIndex,
     setCurrentPlaylist,
+    setCurrentTrackIndex,
   } = useContext(PlayerContext);
   //#endregion
 

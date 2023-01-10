@@ -3,21 +3,25 @@ import PlayerContext from '../../contexts/PlayerContext';
 
 const usePlayer = () => {
   //#region [contexts]
-  const { currentPlaylist, currentTrackIndex, setCurrentTrackIndex } =
+  const { currentPlaylist, currentTrackIndex, play } =
     useContext(PlayerContext);
   //#endregion
 
   //#region [handle methods]
   const handleNextClick = () => {
-    if (!currentPlaylist || currentTrackIndex === -1) return;
-    if (currentTrackIndex === currentPlaylist?.tracks.length - 1) return;
-    setCurrentTrackIndex((currIndex) => currIndex + 1);
+    if (
+      !currentPlaylist ||
+      currentTrackIndex === -1 ||
+      currentTrackIndex === currentPlaylist?.tracks.length - 1
+    )
+      return;
+    play(currentPlaylist, currentTrackIndex + 1);
   };
 
   const handlePrevClick = () => {
     if (!currentPlaylist || currentTrackIndex === -1 || currentTrackIndex === 0)
       return;
-    setCurrentTrackIndex((currIndex) => currIndex - 1);
+      play(currentPlaylist, currentTrackIndex - 1);
   };
   //#endregion
 

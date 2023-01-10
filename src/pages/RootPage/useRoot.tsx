@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { useMemo, useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   FetchPlaylistsData,
   GET_PLAYLISTS_PREVIEWS,
@@ -14,8 +14,12 @@ const useRoot = () => {
   const [playlistsPreviews, setPlaylistsPreviews] = useState<PlaylistPreview[]>(
     [],
   );
-  const [currentPlaylist, setCurrentPlaylist] = useState<Playlist>();
-  const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(-1);
+  const [currentTrack, setCurrentTrack] = useState<Track>();
+  //#endregion
+
+  //#region refs
+  const currentPlaylist = useRef<Playlist | undefined>();
+  const currentTrackIndex = useRef<number>(-1);
   //#endregion
 
   //#region [queries]
@@ -30,29 +34,28 @@ const useRoot = () => {
   );
   //#endregion
 
-  //#region [handle methods]
-  const play = (playlist: Playlist, index: number) => {
-    if (!currentPlaylist || currentPlaylist.id !== playlist.id) {
-      setCurrentPlaylist(playlist);
-    }
-    setCurrentTrackIndex(index);
+  //#region [methods]
+  const setCurrentTrackIndex = (index: number) => {
+    currentTrackIndex.current = index;
   };
-  //#endregion
 
-  //#region [memos]
-  const currentTrack = useMemo<Track | undefined>(() => {
-    return currentPlaylist && currentTrackIndex >= 0
-      ? currentPlaylist.tracks[currentTrackIndex].track
-      : undefined;
-  }, [currentPlaylist, currentTrackIndex]);
+  const setCurrentPlaylist = (playlist: Playlist) => {
+    currentPlaylist.current = playlist;
+  };
+
+  const play = (playlist: Playlist, index: number) => {
+    currentPlaylist.current = playlist;
+    currentTrackIndex.current = index;
+    setCurrentTrack(playlist.tracks[index].track);
+  };
   //#endregion
 
   return {
     error,
     loading,
     playlistsPreviews,
-    currentPlaylist,
-    currentTrackIndex,
+    currentPlaylist: currentPlaylist?.current,
+    currentTrackIndex: currentTrackIndex.current,
     currentTrack,
     play,
     setCurrentTrackIndex,

@@ -1,12 +1,12 @@
-import { createContext, Dispatch, SetStateAction } from 'react';
+import { createContext } from 'react';
 import Playlist from '../models/playlist.model';
 
 interface PlayerContextState {
   currentPlaylist?: Playlist;
   currentTrackIndex: number;
   play: (playlist: Playlist, index: number) => void;
-  setCurrentTrackIndex: Dispatch<SetStateAction<number>>;
-  setCurrentPlaylist: Dispatch<SetStateAction<Playlist | undefined>>;
+  setCurrentTrackIndex: (index: number) => void;
+  setCurrentPlaylist: (playlist: Playlist) => void;
 }
 
 const defaultState = {
