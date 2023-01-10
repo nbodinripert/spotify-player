@@ -35,7 +35,6 @@ const Player: FC<PlayerProps> = ({ track }) => {
         showJumpControls={false}
         showSkipControls
       />
-      <div></div>
     </div>
   );
   //#endregion

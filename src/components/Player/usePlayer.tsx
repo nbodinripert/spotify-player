@@ -21,7 +21,7 @@ const usePlayer = () => {
   const handlePrevClick = () => {
     if (!currentPlaylist || currentTrackIndex === -1 || currentTrackIndex === 0)
       return;
-      play(currentPlaylist, currentTrackIndex - 1);
+    play(currentPlaylist, currentTrackIndex - 1);
   };
   //#endregion
 

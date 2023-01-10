@@ -168,7 +168,6 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
     imgUrl: playlistImgUrl,
     name,
     users: ['Nicolas Bodin'],
-    description: 'Une playlist spécialement conçue pour Shotgun',
     url: `playlist/${id}`,
     tracks: playlistTracks,
     type: PlaylistType.PLAYLIST,
