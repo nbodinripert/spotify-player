@@ -1,14 +1,35 @@
+import PlaylistTrack from '../models/playlistTrack.model';
+import Track from '../models/track.model';
+
 const FAVORITES_KEY = 'favorites';
 
-export const getFavoriteTracks = (): Record<string, boolean> => {
+export const getFavorites = (): Record<string, PlaylistTrack> => {
   const jsonFav = localStorage.getItem(FAVORITES_KEY);
-  return !jsonFav ? {} : (JSON.parse(jsonFav) as Record<string, boolean>);
+  if (!jsonFav) return {};
+  const parsedFav = JSON.parse(jsonFav) as Record<string, string>;
+  const fav = {} as Record<string, PlaylistTrack>;
+  Object.entries(parsedFav).forEach(([id, trackStr]) => {
+    fav[id] = JSON.parse(trackStr) as PlaylistTrack;
+  });
+  return fav;
 };
 
-export const changeFavoriteTrack = (id: string, like: boolean) => {
+export const addFavorite = (track: Track): void => {
   const jsonFav = localStorage.getItem(FAVORITES_KEY);
   const fav = !jsonFav ? {} : JSON.parse(jsonFav);
-  fav[id] = like;
-  console.log(fav);
+  const playlistTrack: PlaylistTrack = {
+    addedAt: new Date().toISOString(),
+    track: { ...track, like: true },
+  };
+  const trackStr = JSON.stringify(playlistTrack);
+  fav[track.id] = trackStr;
+  localStorage.setItem(FAVORITES_KEY, JSON.stringify(fav));
+};
+
+export const removeFavorite = (trackId: string): void => {
+  const jsonFav = localStorage.getItem(FAVORITES_KEY);
+  if (!jsonFav) return;
+  const fav = JSON.parse(jsonFav);
+  delete fav[trackId];
   localStorage.setItem(FAVORITES_KEY, JSON.stringify(fav));
 };

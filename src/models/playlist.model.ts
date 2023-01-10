@@ -1,3 +1,4 @@
+import { PlaylistType } from '../enums/playlistType.enum';
 import PlaylistTrack from './playlistTrack.model';
 
 interface Playlist {
@@ -7,6 +8,7 @@ interface Playlist {
   imgUrl?: string;
   name: string;
   tracks: PlaylistTrack[];
+  type: PlaylistType;
   users: string[];
   url: string;
 }

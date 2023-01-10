@@ -32,17 +32,17 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
                 to="/"
                 icon={faHome}
                 title="Accueil"
-                classNameTitle="navlink-home-title"
-                classNameIcon="navlink-home-icon"
+                classNameTitle="navlink-top-title"
+                classNameIcon="navlink-top-icon"
               />
             </li>
             <li>
               <SidebarNavLink
-                to="collection/likes"
+                to="collection/favorites"
                 icon={faHeart}
                 title="Titres likés"
-                classNameTitle="navlink-small-title"
-                classNameIcon="navlink-small-icon"
+                classNameTitle="navlink-top-title"
+                classNameIcon="navlink-top-icon"
               />
             </li>
           </ul>

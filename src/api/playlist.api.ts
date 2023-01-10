@@ -1,9 +1,10 @@
 import { gql } from '@apollo/client';
 import { DEFAULT_IMG_URL } from '../constants/playlist.constants';
+import { PlaylistType } from '../enums/playlistType.enum';
 import Playlist from '../models/playlist.model';
 import PlaylistPreview from '../models/playlistPreview.model';
 import PlaylistTrack from '../models/playlistTrack.model';
-import { getFavoriteTracks } from '../utils/storage.utils';
+import { getFavorites } from '../utils/storage.utils';
 import { convertMsToHrsMins, convertMsToMinsSecs } from '../utils/time.utils';
 
 //#region [interfaces]
@@ -120,7 +121,7 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
   const { id, name, images, tracks } = response.playlist;
 
   const playlistTracks: PlaylistTrack[] = [];
-  const favoriteTracks = getFavoriteTracks();
+  const favorites = getFavorites();
 
   const playlistImgUrl =
     images && images.length >= 0 ? images[0].url : undefined;
@@ -135,9 +136,7 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
           ? album.images[0].url
           : undefined;
       playlistTracks.push({
-        addedAt: new Date(added_at).toLocaleString('fr', {
-          dateStyle: 'medium',
-        }),
+        addedAt: added_at,
         track: {
           album: album?.name,
           artists: !artists
@@ -149,7 +148,7 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
           duration: convertMsToMinsSecs(duration_ms),
           id: track.id,
           imgUrl,
-          like: favoriteTracks[track.id],
+          like: !!favorites[track.id],
           name: track.name,
           url: preview_url,
         },
@@ -167,6 +166,7 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
     description: 'Une playlist spécialement conçue pour Shotgun',
     url: `playlist/${id}`,
     tracks: playlistTracks,
+    type: PlaylistType.PLAYLIST,
   };
 };
 //#endregion

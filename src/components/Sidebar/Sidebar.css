@@ -19,21 +19,16 @@
     margin-right: 5px;
 }
 
-.navlink-home-title {
-    font-size: 18px;
+.navlink-top-title {
+    font-size: 16px;
 }
 
-.navlink-home-icon {
+.navlink-top-icon {
     font-size: 25px;
 }
 
-.navlink-small-title,
 .navlink-playlist-title {
     font-size: 14px;
-}
-
-.navlink-small-icon {
-    font-size: 18px;
 }
 
 .navlink-playlist-icon {

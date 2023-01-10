@@ -1,37 +1,27 @@
-import { useQuery } from '@apollo/client';
 import {
   faCircleDot,
   faCircleLeft,
   faPlayCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FC, useState } from 'react';
+import { FC, Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  FetchPlaylistsData,
-  GET_PLAYLIST,
-  transformToPlaylist,
-} from '../../api/playlist.api';
 import PlaylistTable from '../../components/PlaylistTable/PlaylistTable';
+import { PLAY_VISIBLE_SCROLL_TOP } from '../../constants/playlist.constants';
 import Playlist from '../../models/playlist.model';
-import OutletContainer from '../OutletContainer/OutletContainer';
 import './PlaylistContainer.css';
 
-const PLAY_VISIBLE_SCROLL_TOP = 189;
+interface PlaylistContainerProps {
+  playlist: Playlist;
+  onLikeClick: (index: number) => void;
+}
 
-const PlaylistContainer: FC = () => {
+const PlaylistContainer: FC<PlaylistContainerProps> = ({
+  playlist,
+  onLikeClick,
+}) => {
   //#region [states]
-  const [playlist, setPlaylist] = useState<Playlist>();
   const [headerPlayVisible, setHeaderPlayVisible] = useState(false);
-  //#endregion
-
-  //#region [queries]
-  const { loading, error } = useQuery<FetchPlaylistsData>(GET_PLAYLIST, {
-    onCompleted: (response) => {
-      const transformed = transformToPlaylist(response);
-      setPlaylist(transformed);
-    },
-  });
   //#endregion
 
   //#region [handle methods]
@@ -51,48 +41,46 @@ const PlaylistContainer: FC = () => {
   //#endregion
 
   //#region [render]
+  const { name, imgUrl, users, tracks, duration, type } = playlist;
   return (
-    <OutletContainer loading={loading} error={error}>
-      {playlist ? (
-        <div className="playlist-container" onScroll={handleScrollEvent}>
-          <div className="playlist-sticky-header">
-            {headerPlayVisible ? (
-              <div className="playlist-sticky-header-play">
-                <FontAwesomeIcon icon={faPlayCircle} />
-                <span>{playlist.name}</span>
-              </div>
-            ) : (
-              <div className="playlist-sticky-header-back">
-                <Link to="/">
-                  <FontAwesomeIcon icon={faCircleLeft} />
-                </Link>
-              </div>
-            )}
+    <div className="playlist-container" onScroll={handleScrollEvent}>
+      <div className="playlist-sticky-header">
+        {headerPlayVisible ? (
+          <div className="playlist-sticky-header-play">
+            <FontAwesomeIcon icon={faPlayCircle} />
+            <span>{name}</span>
           </div>
-          <div className="playlist-info">
-            <img src={playlist.imgUrl} alt="play" />
-            <div className="playlist-info-texts">
-              <p className="playlist-info-type">Playlist</p>
-              <p className="playlist-info-name">{playlist.name}</p>
-              <p className="playlist-info-details">
-                <span className="bold">{playlist.users.join(', ')}</span>
+        ) : (
+          <div className="playlist-sticky-header-back">
+            <Link to="/">
+              <FontAwesomeIcon icon={faCircleLeft} />
+            </Link>
+          </div>
+        )}
+      </div>
+      <div className="playlist-info">
+        <img src={imgUrl} alt="play" />
+        <div className="playlist-info-texts">
+          <p className="playlist-info-type">{type}</p>
+          <p className="playlist-info-name">{name}</p>
+          <p className="playlist-info-details">
+            <span className="bold">{users.join(', ')}</span>
+            <FontAwesomeIcon icon={faCircleDot} className="playlist-info-dot" />
+            <span className="bold">{tracks.length} titre(s)</span>
+            {duration ? (
+              <Fragment>
                 <FontAwesomeIcon
                   icon={faCircleDot}
                   className="playlist-info-dot"
                 />
-                <span className="bold">{playlist.tracks.length} titre(s)</span>
-                <FontAwesomeIcon
-                  icon={faCircleDot}
-                  className="playlist-info-dot"
-                />
-                <span>{playlist.duration}</span>
-              </p>
-            </div>
-          </div>
-          <PlaylistTable playlistTracks={playlist.tracks} />
+                <span>{duration}</span>
+              </Fragment>
+            ) : null}
+          </p>
         </div>
-      ) : null}
-    </OutletContainer>
+      </div>
+      <PlaylistTable tracks={tracks} onLikeClick={onLikeClick} />
+    </div>
   );
   //#endregion
 };

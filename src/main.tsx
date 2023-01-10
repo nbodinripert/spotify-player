@@ -3,9 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { apolloClient } from './config/apollo.config';
-import CollectionContainer from './containers/CollectionContainer/CollectionContainer';
+import ApiPlaylistContainer from './containers/ApiPlaylistContainer/ApiPlaylistContainer';
+import FavoritesContainer from './containers/FavoritesContainer/FavoritesContainer';
 import HomeContainer from './containers/HomeContainer/HomeContainer';
-import PlaylistContainer from './containers/PlaylistContainer/PlaylistContainer';
 import './index.css';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import RootPage from './pages/RootPage/RootPage';
@@ -23,11 +23,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'playlist/:playlistId',
-        element: <PlaylistContainer />,
+        element: <ApiPlaylistContainer />,
       },
       {
         path: 'collection/:collectionType',
-        element: <CollectionContainer />,
+        element: <FavoritesContainer />,
       },
     ],
   },

@@ -1,4 +1,7 @@
 .home-container {
+    width: 100%;
+    height: calc(100% - 30px);
     background-color: var(--content-bg-color);
     padding: 15px 30px;
+    overflow-y: scroll;
 }

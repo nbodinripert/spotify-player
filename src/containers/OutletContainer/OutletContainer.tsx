@@ -6,7 +6,7 @@ import './OutletContainer.css';
 interface OutletContainerProps {
   children: JSX.Element | null;
   error?: ApolloError;
-  loading: boolean;
+  loading?: boolean;
 }
 
 const OutletContainer: FC<OutletContainerProps> = ({

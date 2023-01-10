@@ -4,6 +4,7 @@
     height: 100%;
     width: 100%;
     overflow-y: scroll;
+    --info-height: 170px;
 }
 
 .playlist-sticky-header {
@@ -42,7 +43,7 @@
 }
 
 .playlist-info {
-    height: 170px;
+    height: var(--info-height);
     padding: 10px 30px;
     background: var(--info-gradient);
     display: flex;

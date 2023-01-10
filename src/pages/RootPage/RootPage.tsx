@@ -1,34 +1,14 @@
-import { useQuery } from '@apollo/client';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import {
-  FetchPlaylistsData,
-  GET_PLAYLISTS_PREVIEWS,
-  transformToPlaylistsPreviews,
-} from '../../api/playlist.api';
 import Player from '../../components/Player/Player';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import PlaylistsPreviewsContext from '../../contexts/PlaylistsPreviewsContext';
-import PlaylistPreview from '../../models/playlistPreview.model';
 import './RootPage.css';
+import useRoot from './useRoot';
 
 const RootPage: FC = () => {
-  //#region [states]
-  const [playlistsPreviews, setPlaylistsPreviews] = useState<PlaylistPreview[]>(
-    [],
-  );
-  //#endregion
-
-  //#region [queries]
-  const { loading, error } = useQuery<FetchPlaylistsData>(
-    GET_PLAYLISTS_PREVIEWS,
-    {
-      onCompleted: (response) => {
-        const transformed = transformToPlaylistsPreviews(response);
-        setPlaylistsPreviews(transformed);
-      },
-    },
-  );
+  //#region [logic]
+  const { error, loading, playlistsPreviews } = useRoot();
   //#endregion
 
   //#region [render]
