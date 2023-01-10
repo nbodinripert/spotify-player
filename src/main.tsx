@@ -11,6 +11,7 @@ import ErrorPage from './pages/ErrorPage/ErrorPage';
 import RootPage from './pages/RootPage/RootPage';
 import './variables.css';
 
+//#region [router]
 const router = createBrowserRouter([
   {
     path: '/',
@@ -32,7 +33,9 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+//#endregion
 
+//#region [render]
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ApolloProvider client={apolloClient}>
@@ -40,3 +43,4 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     </ApolloProvider>
   </React.StrictMode>,
 );
+//#endregion

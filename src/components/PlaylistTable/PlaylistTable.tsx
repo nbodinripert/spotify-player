@@ -6,20 +6,20 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, useContext } from 'react';
 import PlayerContext from '../../contexts/PlayerContext';
-import PlaylistTrack from '../../models/playlistTrack.model';
+import Playlist from '../../models/playlist.model';
 import './PlaylistTable.css';
 
 interface PlaylistTableProps {
   bgTableBody?: string;
   bgTableHeader?: string;
-  tracks: PlaylistTrack[];
+  playlist: Playlist;
   onLikeClick: (index: number) => void;
 }
 
 const PlaylistTable: FC<PlaylistTableProps> = ({
   bgTableBody,
   bgTableHeader,
-  tracks,
+  playlist,
   onLikeClick,
 }) => {
   //#region [contexts]
@@ -51,14 +51,14 @@ const PlaylistTable: FC<PlaylistTableProps> = ({
           background: bgTableBody ?? 'var(--default-table-gradient)',
         }}
       >
-        {tracks.map((playlistTrack) => (
-          <tr key={'playlist_tr_' + playlistTrack.index}>
+        {playlist.tracks.map((playlistTrack, index) => (
+          <tr key={'playlist_tr_' + index}>
             <td className="playlist-table-col-index">
               <FontAwesomeIcon
                 icon={faPlay}
-                onClick={() => play(playlistTrack)}
+                onClick={() => play(playlist, index)}
               />
-              <span>{playlistTrack.index + 1}</span>
+              <span>{index + 1}</span>
             </td>
             <td className="playlist-table-td-title">
               <img src={playlistTrack.track.imgUrl} alt="title-img" />
@@ -82,7 +82,7 @@ const PlaylistTable: FC<PlaylistTableProps> = ({
             <td className="playlist-table-col-favorite">
               <FontAwesomeIcon
                 icon={playlistTrack.track.favorite ? faHeartSolid : faHeart}
-                onClick={() => onLikeClick(playlistTrack.index)}
+                onClick={() => onLikeClick(index)}
                 className="cursor"
               />
             </td>

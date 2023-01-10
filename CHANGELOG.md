@@ -6,11 +6,11 @@
   - display user playlists and collections previews
   - routing
 - Playlists
-  - route _/playlists/:playlistId_
+  - route _/playlist/:playlistId_
   - display playlist's tracks
   - like/unlike track
 - Collections
-  - route _/collections/:collectionType_
+  - route _/collection/:collectionType_
   - only one available: favorites
     - display favorites
     - unlike track

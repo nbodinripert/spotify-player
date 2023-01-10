@@ -93,7 +93,7 @@ const PlaylistContainer: FC<PlaylistContainerProps> = ({
         </div>
       </div>
       <PlaylistTable
-        tracks={tracks}
+        playlist={playlist}
         onLikeClick={onLikeClick}
         bgTableHeader={bgTableHeader}
         bgTableBody={bgTableBody}

@@ -71,6 +71,7 @@ export const GET_PLAYLISTS_PREVIEWS = gql`
 export const GET_PLAYLIST = gql`
   query GetPlaylist {
     playlist {
+      id
       name
       images {
         url
@@ -168,6 +169,6 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
     url: `playlist/${id}`,
     tracks: playlistTracks,
     type: PlaylistType.PLAYLIST,
-  };
+  } as Playlist;
 };
 //#endregion
