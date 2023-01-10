@@ -132,29 +132,32 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
     tracks.forEach((playlistTrack, index) => {
       const { added_at, track } = playlistTrack;
       const { album, artists, preview_url, duration_ms } = track;
-      const imgUrl =
-        album && album.images && album.images.length >= 0
-          ? album.images[0].url
-          : undefined;
-      playlistTracks.push({
-        addedAt: added_at,
-        index,
-        track: {
-          album: album?.name,
-          artists: !artists
-            ? []
-            : artists.map((artist) => ({
-                id: artist.id,
-                name: artist.name,
-              })),
-          duration: convertMsToMinsSecs(duration_ms),
-          id: track.id,
-          imgUrl,
-          favorite: !!favorites[track.id],
-          name: track.name,
-          url: preview_url,
-        },
-      });
+      if (preview_url) {
+        const imgUrl =
+          album && album.images && album.images.length >= 0
+            ? album.images[0].url
+            : undefined;
+        playlistTracks.push({
+          addedAt: added_at,
+          index,
+          track: {
+            album: album?.name,
+            artists: !artists
+              ? []
+              : artists.map((artist) => ({
+                  id: artist.id,
+                  name: artist.name,
+                })),
+            duration: convertMsToMinsSecs(duration_ms),
+            id: track.id,
+            imgUrl,
+            favorite: !!favorites[track.id],
+            name: track.name,
+            url: preview_url,
+          },
+        });
+      }
+
       playlistDurationMs += duration_ms;
     });
   }

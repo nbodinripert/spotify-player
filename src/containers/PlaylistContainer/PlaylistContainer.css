@@ -75,6 +75,8 @@
     font-weight: 100;
     font-size: 17px;
     color: var(--details-text-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .playlist-info-details {
@@ -96,5 +98,13 @@
 
     .playlist-info-name {
         font-size: 20px;
+    }
+
+    .playlist-info-description {
+        font-size: 14px;
+    }
+
+    .playlist-info-type {
+        display: none;
     }
 }
