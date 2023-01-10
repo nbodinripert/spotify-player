@@ -18,6 +18,7 @@ export const addFavorite = (track: Track): void => {
   const jsonFav = localStorage.getItem(FAVORITES_KEY);
   const fav = !jsonFav ? {} : JSON.parse(jsonFav);
   const playlistTrack: PlaylistTrack = {
+    index: Object.keys(fav).length,
     addedAt: new Date().toISOString(),
     track: { ...track, favorite: true },
   };

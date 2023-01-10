@@ -128,7 +128,7 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
   let playlistDurationMs = 0;
 
   if (tracks && tracks.length > 0) {
-    tracks.forEach((playlistTrack) => {
+    tracks.forEach((playlistTrack, index) => {
       const { added_at, track } = playlistTrack;
       const { album, artists, preview_url, duration_ms } = track;
       const imgUrl =
@@ -137,6 +137,7 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
           : undefined;
       playlistTracks.push({
         addedAt: added_at,
+        index,
         track: {
           album: album?.name,
           artists: !artists

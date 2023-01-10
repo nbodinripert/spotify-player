@@ -35,12 +35,39 @@
     border-top: none !important;
 }
 
+.playlist-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.playlist-table tbody tr:hover span {
+    color: var(--main-text-color);
+    font-weight: bold;
+}
+
 .playlist-table tbody tr:first-of-type td {
     border-top: none !important;
 }
 
 .playlist-table-col-index {
     width: 50px;
+}
+
+.playlist-table-col-index svg {
+    display: none;
+}
+
+.playlist-table tbody tr:hover .playlist-table-col-index {
+    cursor: pointer;
+}
+
+.playlist-table tbody tr:hover .playlist-table-col-index svg {
+    display: block;
+    color: var(--main-text-color);
+    font-size: 17px;
+}
+
+.playlist-table tbody tr:hover .playlist-table-col-index span {
+    display: none;
 }
 
 .playlist-table-td-title {

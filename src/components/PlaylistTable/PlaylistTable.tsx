@@ -1,7 +1,11 @@
 import { faClock, faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHeart as faHeartSolid,
+  faPlay,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
+import PlayerContext from '../../contexts/PlayerContext';
 import PlaylistTrack from '../../models/playlistTrack.model';
 import './PlaylistTable.css';
 
@@ -18,6 +22,10 @@ const PlaylistTable: FC<PlaylistTableProps> = ({
   tracks,
   onLikeClick,
 }) => {
+  //#region [contexts]
+  const { play } = useContext(PlayerContext);
+  //endregion
+
   //#region [render]
   return (
     <table className="playlist-table">
@@ -43,9 +51,15 @@ const PlaylistTable: FC<PlaylistTableProps> = ({
           background: bgTableBody ?? 'var(--default-table-gradient)',
         }}
       >
-        {tracks.map((playlistTrack, index) => (
-          <tr key={'playlist_tr_' + index}>
-            <td className="playlist-table-col-index">{index + 1}</td>
+        {tracks.map((playlistTrack) => (
+          <tr key={'playlist_tr_' + playlistTrack.index}>
+            <td className="playlist-table-col-index">
+              <FontAwesomeIcon
+                icon={faPlay}
+                onClick={() => play(playlistTrack)}
+              />
+              <span>{playlistTrack.index + 1}</span>
+            </td>
             <td className="playlist-table-td-title">
               <img src={playlistTrack.track.imgUrl} alt="title-img" />
               <div>
@@ -57,7 +71,9 @@ const PlaylistTable: FC<PlaylistTableProps> = ({
                 </span>
               </div>
             </td>
-            <td>{playlistTrack.track.album ?? ''}</td>
+            <td>
+              <span>{playlistTrack.track.album ?? ''}</span>
+            </td>
             <td className="playlist-table-col-addedAt">
               {new Date(playlistTrack.addedAt).toLocaleString('fr', {
                 dateStyle: 'medium',
@@ -66,7 +82,7 @@ const PlaylistTable: FC<PlaylistTableProps> = ({
             <td className="playlist-table-col-favorite">
               <FontAwesomeIcon
                 icon={playlistTrack.track.favorite ? faHeartSolid : faHeart}
-                onClick={() => onLikeClick(index)}
+                onClick={() => onLikeClick(playlistTrack.index)}
                 className="cursor"
               />
             </td>
