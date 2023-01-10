@@ -12,11 +12,17 @@ import Playlist from '../../models/playlist.model';
 import './PlaylistContainer.css';
 
 interface PlaylistContainerProps {
+  backgroundInfo?: string;
+  bgTableBody?: string;
+  bgTableHeader?: string;
   playlist: Playlist;
   onLikeClick: (index: number) => void;
 }
 
 const PlaylistContainer: FC<PlaylistContainerProps> = ({
+  backgroundInfo,
+  bgTableBody,
+  bgTableHeader,
   playlist,
   onLikeClick,
 }) => {
@@ -41,10 +47,13 @@ const PlaylistContainer: FC<PlaylistContainerProps> = ({
   //#endregion
 
   //#region [render]
-  const { name, imgUrl, users, tracks, duration, type } = playlist;
+  const { name, imgUrl, users, tracks, duration, type, description } = playlist;
   return (
     <div className="playlist-container" onScroll={handleScrollEvent}>
-      <div className="playlist-sticky-header">
+      <div
+        className="playlist-sticky-header"
+        style={{ background: backgroundInfo ?? 'var(--default-info-gradient)' }}
+      >
         {headerPlayVisible ? (
           <div className="playlist-sticky-header-play">
             <FontAwesomeIcon icon={faPlayCircle} />
@@ -58,11 +67,15 @@ const PlaylistContainer: FC<PlaylistContainerProps> = ({
           </div>
         )}
       </div>
-      <div className="playlist-info">
+      <div
+        className="playlist-info"
+        style={{ background: backgroundInfo ?? 'var(--default-info-gradient)' }}
+      >
         <img src={imgUrl} alt="play" />
         <div className="playlist-info-texts">
           <p className="playlist-info-type">{type}</p>
           <p className="playlist-info-name">{name}</p>
+          <p className="playlist-info-description">{description}</p>
           <p className="playlist-info-details">
             <span className="bold">{users.join(', ')}</span>
             <FontAwesomeIcon icon={faCircleDot} className="playlist-info-dot" />
@@ -79,7 +92,12 @@ const PlaylistContainer: FC<PlaylistContainerProps> = ({
           </p>
         </div>
       </div>
-      <PlaylistTable tracks={tracks} onLikeClick={onLikeClick} />
+      <PlaylistTable
+        tracks={tracks}
+        onLikeClick={onLikeClick}
+        bgTableHeader={bgTableHeader}
+        bgTableBody={bgTableBody}
+      />
     </div>
   );
   //#endregion

@@ -33,8 +33,8 @@ const useFavorites = () => {
 
   //#region [handle methods]
   const handleLikeClick = (trackIndex: number) => {
-    const { id, like } = favoritesPlaylist.tracks[trackIndex].track;
-    if (like) {
+    const { id, favorite } = favoritesPlaylist.tracks[trackIndex].track;
+    if (favorite) {
       removeFavorite(id);
     } else {
       addFavorite(favoritesPlaylist.tracks[trackIndex].track);

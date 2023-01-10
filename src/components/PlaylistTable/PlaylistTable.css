@@ -10,7 +10,7 @@
 }
 
 .playlist-table th {
-    background-color: rgb(23, 0, 33);
+    background-color: inherit;
     color: var(--details-text-color);
     position: sticky;
     top: var(--sticky-header-height);
@@ -33,10 +33,6 @@
 .playlist-table td:first-of-type {
     padding-left: 30px;
     border-top: none !important;
-}
-
-.playlist-table tbody {
-    background: linear-gradient(0deg, rgba(75, 35, 89, 1) 0%, rgba(23, 0, 33, 1) 100%);
 }
 
 .playlist-table tbody tr:first-of-type td {
@@ -73,7 +69,7 @@
     width: 130px;
 }
 
-.playlist-table-col-like {
+.playlist-table-col-favorite {
     width: 50px;
 }
 

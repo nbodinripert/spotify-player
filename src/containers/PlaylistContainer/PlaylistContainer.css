@@ -12,7 +12,6 @@
     height: var(--sticky-header-height);
     padding: 0px 30px;
     top: 0px;
-    background: var(--info-gradient);
 }
 
 .playlist-sticky-header>div {
@@ -45,7 +44,6 @@
 .playlist-info {
     height: var(--info-height);
     padding: 10px 30px;
-    background: var(--info-gradient);
     display: flex;
     gap: 20px;
 }
@@ -71,6 +69,12 @@
     font-size: 40px;
     margin-top: 15px;
     margin-bottom: 20px;
+}
+
+.playlist-info-description {
+    font-weight: 100;
+    font-size: 17px;
+    color: var(--details-text-color);
 }
 
 .playlist-info-details {

@@ -40,7 +40,7 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
               <SidebarNavLink
                 to="collection/favorites"
                 icon={faHeart}
-                title="Titres likés"
+                title="Titres favoris"
                 classNameTitle="navlink-top-title"
                 classNameIcon="navlink-top-icon"
               />

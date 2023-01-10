@@ -25,14 +25,14 @@ const useApiPlaylist = () => {
   //#region [handle methods]
   const handleLikeClick = (trackIndex: number) => {
     if (!playlist) return;
-    const { id, like } = playlist.tracks[trackIndex].track;
-    if (like) {
+    const { id, favorite } = playlist.tracks[trackIndex].track;
+    if (favorite) {
       removeFavorite(id);
     } else {
       addFavorite(playlist.tracks[trackIndex].track);
     }
     const playlistCopy = { ...playlist };
-    playlistCopy.tracks[trackIndex].track.like = !like;
+    playlistCopy.tracks[trackIndex].track.favorite = !favorite;
     setPlaylist(playlistCopy);
   };
   //#endregion

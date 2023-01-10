@@ -19,7 +19,7 @@ export const addFavorite = (track: Track): void => {
   const fav = !jsonFav ? {} : JSON.parse(jsonFav);
   const playlistTrack: PlaylistTrack = {
     addedAt: new Date().toISOString(),
-    track: { ...track, like: true },
+    track: { ...track, favorite: true },
   };
   const trackStr = JSON.stringify(playlistTrack);
   fav[track.id] = trackStr;
@@ -32,4 +32,8 @@ export const removeFavorite = (trackId: string): void => {
   const fav = JSON.parse(jsonFav);
   delete fav[trackId];
   localStorage.setItem(FAVORITES_KEY, JSON.stringify(fav));
+};
+
+export const removeFavorites = () => {
+  localStorage.removeItem(FAVORITES_KEY);
 };

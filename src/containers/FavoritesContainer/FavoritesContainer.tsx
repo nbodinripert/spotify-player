@@ -12,6 +12,9 @@ const FavoritesContainer: FC = () => {
     <PlaylistContainer
       playlist={favoritesPlaylist}
       onLikeClick={handleLikeClick}
+      backgroundInfo="var(--favorites-info-gradient)"
+      bgTableBody="var(--favorites-table-gradient)"
+      bgTableHeader="var(--favorites-table-header-bg-color)"
     />
   );
   //#endregion

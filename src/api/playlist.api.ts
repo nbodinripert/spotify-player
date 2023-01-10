@@ -148,7 +148,7 @@ export const transformToPlaylist = (response: FetchPlaylistsData): Playlist => {
           duration: convertMsToMinsSecs(duration_ms),
           id: track.id,
           imgUrl,
-          like: !!favorites[track.id],
+          favorite: !!favorites[track.id],
           name: track.name,
           url: preview_url,
         },

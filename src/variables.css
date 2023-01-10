@@ -10,7 +10,12 @@ body {
     --sidebar-bg-color: black;
     --unactive-link-color: gray;
     --hr-bg-color: lightgray;
-    --info-gradient: linear-gradient(90deg, rgba(51, 0, 75, 1) 0%, rgba(94, 9, 121, 1) 35%, rgb(193, 168, 220) 100%);
+    --default-info-gradient: linear-gradient(90deg, rgba(51, 0, 75, 1) 0%, rgba(94, 9, 121, 1) 35%, rgb(193, 168, 220) 100%);
+    --default-table-header-bg-color: rgb(23, 0, 33);
+    --default-table-gradient: linear-gradient(0deg, rgba(75, 35, 89, 1) 0%, rgba(23, 0, 33, 1) 100%);
+    --favorites-info-gradient: linear-gradient(90deg, rgba(55, 1, 138, 1) 0%, rgba(138, 2, 146, 1) 60%, rgba(255, 141, 127, 1) 100%);
+    --favorites-table-header-bg-color: #160138;
+    --favorites-table-gradient: linear-gradient(0deg, rgba(99, 48, 177, 1) 0%, rgba(27, 0, 69, 1) 100%);
     --player-height: 80px;
     --sticky-header-height: 60px;
     --sidebar-width: 200px;
@@ -29,5 +34,9 @@ body {
         --sidebar-bg-color: black;
         --unactive-link-color: gray;
         --hr-bg-color: lightgray;
+        --default-info-gradient: linear-gradient(90deg, rgba(51, 0, 75, 1) 0%, rgba(94, 9, 121, 1) 35%, rgb(193, 168, 220) 100%);
+        --default-table-gradient: linear-gradient(0deg, rgba(75, 35, 89, 1) 0%, rgba(23, 0, 33, 1) 100%);
+        --favorites-info-gradient: linear-gradient(90deg, rgba(55, 1, 138, 1) 0%, rgba(138, 2, 146, 1) 60%, rgba(255, 141, 127, 1) 100%);
+        --favorites-table-gradient: linear-gradient(0deg, rgba(99, 48, 177, 1) 0%, rgba(27, 0, 69, 1) 100%);
     }
 }

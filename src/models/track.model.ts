@@ -6,7 +6,7 @@ interface Track {
   duration: string;
   id: string;
   imgUrl?: string;
-  like: boolean;
+  favorite: boolean;
   name: string;
   url?: string;
 }

@@ -20,11 +20,12 @@
 }
 
 .navlink-top-title {
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .navlink-top-icon {
-    font-size: 25px;
+    font-size: 22px;
+    width: 25px;
 }
 
 .navlink-playlist-title {

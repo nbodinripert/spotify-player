@@ -6,27 +6,43 @@ import PlaylistTrack from '../../models/playlistTrack.model';
 import './PlaylistTable.css';
 
 interface PlaylistTableProps {
+  bgTableBody?: string;
+  bgTableHeader?: string;
   tracks: PlaylistTrack[];
   onLikeClick: (index: number) => void;
 }
 
-const PlaylistTable: FC<PlaylistTableProps> = ({ tracks, onLikeClick }) => {
+const PlaylistTable: FC<PlaylistTableProps> = ({
+  bgTableBody,
+  bgTableHeader,
+  tracks,
+  onLikeClick,
+}) => {
   //#region [render]
   return (
     <table className="playlist-table">
       <thead>
-        <tr>
+        <tr
+          style={{
+            backgroundColor:
+              bgTableHeader ?? 'var(--default-table-header-bg-color)',
+          }}
+        >
           <th className="playlist-table-col-index">#</th>
           <th>Titre</th>
           <th>Album</th>
           <th className="playlist-table-col-addedAt">Ajouté le</th>
-          <th className="playlist-table-col-like"></th>
+          <th className="playlist-table-col-favorite"></th>
           <th className="playlist-table-col-duration">
             <FontAwesomeIcon icon={faClock} />
           </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody
+        style={{
+          background: bgTableBody ?? 'var(--default-table-gradient)',
+        }}
+      >
         {tracks.map((playlistTrack, index) => (
           <tr key={'playlist_tr_' + index}>
             <td className="playlist-table-col-index">{index + 1}</td>
@@ -47,9 +63,9 @@ const PlaylistTable: FC<PlaylistTableProps> = ({ tracks, onLikeClick }) => {
                 dateStyle: 'medium',
               })}
             </td>
-            <td className="playlist-table-col-like">
+            <td className="playlist-table-col-favorite">
               <FontAwesomeIcon
-                icon={playlistTrack.track.like ? faHeartSolid : faHeart}
+                icon={playlistTrack.track.favorite ? faHeartSolid : faHeart}
                 onClick={() => onLikeClick(index)}
                 className="cursor"
               />
