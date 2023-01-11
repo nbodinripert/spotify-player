@@ -1,5 +1,11 @@
 # SPOTIGUN CHANGELOG
 
+## Version 1.0.0
+
+- Themes
+  - light/dark
+  - depending on user's operating system
+
 ## Version 0.2.0
 
 - Player
