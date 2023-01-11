@@ -12,27 +12,30 @@ import RootPage from './pages/RootPage/RootPage';
 import './variables.css';
 
 //#region [router]
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RootPage />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        element: <HomeContainer />,
-      },
-      {
-        path: 'playlist/:playlistId',
-        element: <ApiPlaylistContainer />,
-      },
-      {
-        path: 'collection/:collectionType',
-        element: <FavoritesContainer />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <RootPage />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          index: true,
+          element: <HomeContainer />,
+        },
+        {
+          path: 'playlist/:playlistId',
+          element: <ApiPlaylistContainer />,
+        },
+        {
+          path: 'collection/:collectionType',
+          element: <FavoritesContainer />,
+        },
+      ],
+    },
+  ],
+  { basename: '/spotify-player' },
+);
 //#endregion
 
 //#region [render]
