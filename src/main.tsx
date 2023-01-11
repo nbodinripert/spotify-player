@@ -3,6 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { apolloClient } from './config/apollo.config';
+import {
+  BASENAME,
+  COLLECTION_PATH,
+  PLAYLIST_PATH,
+} from './constants/url.constant';
 import ApiPlaylistContainer from './containers/ApiPlaylistContainer/ApiPlaylistContainer';
 import FavoritesContainer from './containers/FavoritesContainer/FavoritesContainer';
 import HomeContainer from './containers/HomeContainer/HomeContainer';
@@ -24,17 +29,17 @@ const router = createBrowserRouter(
           element: <HomeContainer />,
         },
         {
-          path: 'playlist/:playlistId',
+          path: PLAYLIST_PATH,
           element: <ApiPlaylistContainer />,
         },
         {
-          path: 'collection/:collectionType',
+          path: COLLECTION_PATH,
           element: <FavoritesContainer />,
         },
       ],
     },
   ],
-  { basename: '/spotify-player' },
+  { basename: BASENAME },
 );
 //#endregion
 

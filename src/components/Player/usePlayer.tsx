@@ -8,7 +8,7 @@ const usePlayer = () => {
   //#endregion
 
   //#region [handle methods]
-  const handleNextClick = () => {
+  const playNextTrack = () => {
     if (
       !currentPlaylist ||
       currentTrackIndex === -1 ||
@@ -18,7 +18,7 @@ const usePlayer = () => {
     play(currentPlaylist, currentTrackIndex + 1);
   };
 
-  const handlePrevClick = () => {
+  const playPrevTrack = () => {
     if (!currentPlaylist || currentTrackIndex === -1 || currentTrackIndex === 0)
       return;
     play(currentPlaylist, currentTrackIndex - 1);
@@ -26,8 +26,8 @@ const usePlayer = () => {
   //#endregion
 
   return {
-    handleNextClick,
-    handlePrevClick,
+    playNextTrack,
+    playPrevTrack,
   };
 };
 
