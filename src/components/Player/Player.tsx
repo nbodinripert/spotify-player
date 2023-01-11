@@ -11,7 +11,7 @@ interface PlayerProps {
 
 const Player: FC<PlayerProps> = ({ track }) => {
   //#region [logic]
-  const { handleNextClick, handlePrevClick } = usePlayer();
+  const { playNextTrack, playPrevTrack } = usePlayer();
   //#endregion
 
   //#region [render]
@@ -29,11 +29,12 @@ const Player: FC<PlayerProps> = ({ track }) => {
         </div>
       ) : null}
       <AudioPlayer
-        onClickNext={handleNextClick}
-        onClickPrevious={handlePrevClick}
+        onClickNext={playNextTrack}
+        onClickPrevious={playPrevTrack}
         src={track?.url}
         showJumpControls={false}
         showSkipControls
+        onEnded={playNextTrack}
       />
     </div>
   );
