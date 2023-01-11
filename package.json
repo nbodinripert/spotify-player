@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://nbodinripert.github.io/spotify-player/",
+  "homepage": "https://nbodinripert.github.io/spotify-player",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
