@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PlaylistTable from '../../components/PlaylistTable/PlaylistTable';
-import { PLAY_VISIBLE_SCROLL_TOP } from '../../constants/playlist.constants';
+import { PLAY_VISIBLE_SCROLL_TOP } from '../../constants/playlist.constant';
 import Playlist from '../../models/playlist.model';
 import './PlaylistContainer.css';
 

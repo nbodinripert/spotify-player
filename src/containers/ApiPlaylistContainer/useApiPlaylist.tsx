@@ -5,7 +5,7 @@ import {
   GET_PLAYLIST,
   transformToPlaylist,
 } from '../../api/playlist.api';
-import { FAVORITES_PLAYLIST_ID } from '../../constants/playlist.constants';
+import { FAVORITES_PLAYLIST_ID } from '../../constants/playlist.constant';
 import PlayerContext from '../../contexts/PlayerContext';
 import Playlist from '../../models/playlist.model';
 import { addFavorite, removeFavorite } from '../../utils/storage.utils';
