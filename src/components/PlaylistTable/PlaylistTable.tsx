@@ -23,7 +23,8 @@ const PlaylistTable: FC<PlaylistTableProps> = ({
   onLikeClick,
 }) => {
   //#region [contexts]
-  const { play } = useContext(PlayerContext);
+  const { currentPlaylist, currentTrackIndex, play } =
+    useContext(PlayerContext);
   //endregion
 
   //#region [render]
@@ -52,7 +53,14 @@ const PlaylistTable: FC<PlaylistTableProps> = ({
         }}
       >
         {playlist.tracks.map((playlistTrack, index) => (
-          <tr key={'playlist_tr_' + index}>
+          <tr
+            key={'playlist_tr_' + index}
+            className={
+              currentPlaylist?.id === playlist.id && currentTrackIndex === index
+                ? 'playlist-table-current-track'
+                : ''
+            }
+          >
             <td className="playlist-table-col-index">
               <FontAwesomeIcon
                 icon={faPlay}

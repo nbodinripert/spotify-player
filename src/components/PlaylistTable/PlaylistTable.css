@@ -48,6 +48,10 @@
     border-top: none !important;
 }
 
+.playlist-table-current-track {
+    background-color: var(--current-track-bg-color);
+}
+
 .playlist-table-col-index {
     width: 50px;
 }
