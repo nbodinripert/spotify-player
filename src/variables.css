@@ -9,14 +9,17 @@ body {
     --player-bg-color: #181818;
     --sidebar-bg-color: black;
     --unactive-link-color: gray;
-    --hr-bg-color: lightgray;
     --default-info-gradient: linear-gradient(90deg, rgba(51, 0, 75, 1) 0%, rgba(94, 9, 121, 1) 35%, rgb(193, 168, 220) 100%);
     --default-table-header-bg-color: rgb(23, 0, 33);
     --default-table-gradient: linear-gradient(0deg, rgba(75, 35, 89, 1) 0%, rgba(23, 0, 33, 1) 100%);
     --favorites-info-gradient: linear-gradient(90deg, rgba(55, 1, 138, 1) 0%, rgba(138, 2, 146, 1) 60%, rgba(255, 141, 127, 1) 100%);
     --favorites-table-header-bg-color: #160138;
     --favorites-table-gradient: linear-gradient(0deg, rgba(99, 48, 177, 1) 0%, rgba(27, 0, 69, 1) 100%);
+    --table-border-bottom-color: #cdbae2;
+    --table-tr-hover-bg-color: rgba(255, 255, 255, 0.5);
     --current-track-bg-color: rgba(227, 166, 166, 0.4);
+    --player-border-top-color: #282828;
+    --player-dl-progress-color: #dddddd;
     --player-height: 80px;
     --sticky-header-height: 60px;
     --sidebar-width: 200px;
@@ -26,19 +29,24 @@ body {
 
     html,
     body {
-        --main-text-color: white;
-        --details-text-color: lightgray;
-        --content-bg-color: #121212;
-        --playlist-card-bg-color: #181818;
-        --playlist-card-hover-bg-color: #282828;
-        --player-bg-color: #181818;
-        --sidebar-bg-color: black;
-        --unactive-link-color: gray;
-        --hr-bg-color: lightgray;
-        --default-info-gradient: linear-gradient(90deg, rgba(51, 0, 75, 1) 0%, rgba(94, 9, 121, 1) 35%, rgb(193, 168, 220) 100%);
-        --default-table-gradient: linear-gradient(0deg, rgba(75, 35, 89, 1) 0%, rgba(23, 0, 33, 1) 100%);
-        --favorites-info-gradient: linear-gradient(90deg, rgba(55, 1, 138, 1) 0%, rgba(138, 2, 146, 1) 60%, rgba(255, 141, 127, 1) 100%);
-        --favorites-table-gradient: linear-gradient(0deg, rgba(99, 48, 177, 1) 0%, rgba(27, 0, 69, 1) 100%);
-        --current-track-bg-color: rgba(227, 166, 166, 0.4);
+        --main-text-color: rgb(31, 31, 31);
+        --details-text-color: rgb(71, 71, 71);
+        --content-bg-color: #eaeaea;
+        --playlist-card-bg-color: #d0cfcf;
+        --playlist-card-hover-bg-color: #ffffff;
+        --player-bg-color: #e0e0e0;
+        --sidebar-bg-color: rgb(247, 247, 247);
+        --unactive-link-color: rgb(159, 159, 159);
+        --default-info-gradient: linear-gradient(90deg, rgb(193, 168, 220) 0%, rgb(127, 64, 146) 65%, rgb(80, 24, 106) 100%);
+        --default-table-header-bg-color: rgb(213, 193, 221);
+        --default-table-gradient: linear-gradient(0deg, rgb(164, 148, 170) 0%, rgb(213, 193, 221) 100%);
+        --favorites-info-gradient: linear-gradient(90deg, rgb(238, 165, 155) 0%, rgba(138, 2, 146, 1) 70%, rgba(55, 1, 138, 1) 100%);
+        --favorites-table-header-bg-color: rgb(236, 183, 202);
+        --favorites-table-gradient: linear-gradient(0deg, rgb(190, 155, 242) 0%, rgba(236, 183, 202) 100%);
+        --table-border-bottom-color: #1b0236;
+        --table-tr-hover-bg-color: rgba(172, 135, 135, 0.5);
+        --current-track-bg-color: rgba(255, 255, 255, 0.5);
+        --player-border-top-color: #9f9797;
+        --player-dl-progress-color: #ababab;
     }
 }

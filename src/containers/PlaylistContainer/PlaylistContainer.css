@@ -55,6 +55,7 @@
 
 .playlist-info-texts {
     align-self: flex-end;
+    color: var(--main-text-color);
 }
 
 .playlist-info-type {
