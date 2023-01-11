@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import favoritesImg from '../../assets/like.png';
-import { FAVORITES_PLAYLIST_ID } from '../../constants/playlist.constants';
+import { FAVORITES_PLAYLIST_ID } from '../../constants/playlist.constant';
 import PlayerContext from '../../contexts/PlayerContext';
 import { PlaylistType } from '../../enums/playlistType.enum';
 import Playlist from '../../models/playlist.model';

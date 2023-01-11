@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { DEFAULT_IMG_URL } from '../constants/playlist.constants';
+import { DEFAULT_IMG_URL } from '../constants/playlist.constant';
 import { PlaylistType } from '../enums/playlistType.enum';
 import Playlist from '../models/playlist.model';
 import PlaylistPreview from '../models/playlistPreview.model';
