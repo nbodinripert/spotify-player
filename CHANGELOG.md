@@ -1,5 +1,13 @@
 # SPOTIGUN CHANGELOG
 
+## Version 0.2.0
+
+- Player
+  - play/pause a track
+  - previous/next track
+- Playlists
+  - style current track
+
 ## Version 0.1.0
 
 - Home
