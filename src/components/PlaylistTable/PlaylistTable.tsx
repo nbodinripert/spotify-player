@@ -71,16 +71,20 @@ const PlaylistTable: FC<PlaylistTableProps> = ({
             <td className="playlist-table-td-title">
               <img src={playlistTrack.track.imgUrl} alt="title-img" />
               <div>
-                <span>{playlistTrack.track.name}</span>
-                <span>
+                <span className="two-lines-ellipsis">
+                  {playlistTrack.track.name}
+                </span>
+                <span className="two-lines-ellipsis">
                   {playlistTrack.track.artists
                     .map((artist) => artist.name)
                     .join(', ')}
                 </span>
               </div>
             </td>
-            <td>
-              <span>{playlistTrack.track.album ?? ''}</span>
+            <td className="playlist-table-td-album">
+              <span className="two-lines-ellipsis">
+                {playlistTrack.track.album ?? ''}
+              </span>
             </td>
             <td className="playlist-table-col-addedAt">
               {new Date(playlistTrack.addedAt).toLocaleString('fr', {

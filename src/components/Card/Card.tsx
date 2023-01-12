@@ -15,7 +15,7 @@ const Card: FC<CardProps> = ({ imgUrl, linkTo, title, details }) => {
     <Link to={linkTo} className="card">
       <img src={imgUrl} alt="cardImg" />
       <p className="card-title">{title}</p>
-      <p className="card-details">{details}</p>
+      <p className="card-details two-lines-ellipsis">{details}</p>
     </Link>
   );
   //#endregion

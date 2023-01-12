@@ -26,10 +26,4 @@
 .card-details {
     font-size: 13px;
     color: var(--details-text-color);
-    display: -webkit-box;
-    max-width: 100%;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
