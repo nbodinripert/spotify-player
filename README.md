@@ -2,7 +2,7 @@
 
 ### What is it?
 
-This project responds to the technical interview I had for Shotgun. Basically, this project is an application allowing the user to view playlists, listen to music and like tracks. You can try it there: https://nbodinripert.github.io/spotify-player
+This project responds to the technical interview I had for Shotgun. Basically, this project is a responsive application allowing the user to view playlists, listen to music and like tracks. You can try it there: https://nbodinripert.github.io/spotify-player
 
 ### Latest version
 
@@ -47,5 +47,6 @@ _Example of local url: http://localhost:5173/spotify-player/_
 - Auto play next playlist track
 - Add a track to your favorites
 - Remove a track from your favorites
+- Responsive
 
 The interface has two themes: light and dark. The theme is automatically chosen according to the theme of the user's OS.
