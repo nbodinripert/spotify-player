@@ -1,5 +1,10 @@
 # SPOTIGUN CHANGELOG
 
+## Version 1.1.0
+
+- Auto play next playlist track
+- README.md
+
 ## Version 1.0.0
 
 - Themes
