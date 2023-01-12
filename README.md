@@ -2,11 +2,11 @@
 
 ### What is it?
 
-This project responds to the technical interview I had for Shotgun. Basically, this project is an application allowing the user to view playlists, listen to music and like tracks.
+This project responds to the technical interview I had for Shotgun. Basically, this project is an application allowing the user to view playlists, listen to music and like tracks. You can try it there: https://nbodinripert.github.io/spotify-player
 
 ### Latest version
 
-The latest version is **v.1.0.0**.
+The latest version is **v.1.1.0**.
 
 ### Technical stack
 
@@ -32,6 +32,8 @@ npm install
 npm run dev
 ```
 
+> please run the project from the `main` branch
+
 4. Enjoy !
 
 _Example of local url: http://localhost:5173/spotify-player/_
@@ -42,6 +44,7 @@ _Example of local url: http://localhost:5173/spotify-player/_
 - View favorites
 - Play music
 - Play the previous or next music in the playlist
+- Auto play next playlist track
 - Add a track to your favorites
 - Remove a track from your favorites
 
